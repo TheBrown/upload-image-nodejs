@@ -3,9 +3,23 @@ const multer = require("multer");
 const ejs = require("ejs");
 const path = require("path");
 
+const fs = require("fs");
+const uploads = "./public/uploads";
+
+const d = new Date();
+const month = d.getMonth();
+const year = d.getFullYear();
+
+if (!fs.existsSync(uploads)) fs.mkdirSync(uploads);
+
+if (!fs.existsSync(uploads + "/" + year)) fs.mkdirSync(uploads + "/" + year);
+
+if (!fs.existsSync(uploads + "/" + year + "/" + month)) fs.mkdirSync(uploads + "/" + year + "/" + month);
+
+
 // Set Storage Engine
 const storage = multer.diskStorage({
-  destination: "./public/uploads/",
+  destination: `${uploads}/${year}/${month}/`,
   filename: (req, file, callback) => {
     callback(
       null,
@@ -21,7 +35,7 @@ const upload = multer({
   fileFilter: function(req, file, cb) {
     checkFileType(file, cb);
   }
-}).single("myImage");
+}).single("my-signature-image");
 
 // Check File
 function checkFileType(file, cb) {
@@ -63,7 +77,7 @@ app.post("/upload", (req, res) => {
       } else {
         res.render("index", {
           msg: "File Uploaded!",
-          file: `uploads/${req.file.filename}`
+          file: `uploads/${year}/${month}/${req.file.filename}`
         });
       }
     }

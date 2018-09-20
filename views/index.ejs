@@ -7,19 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <title>Nodejs file Upload</title>
+    <title>Nodejs Image Upload </title>
 </head>
 
 <body>
 
     <div class="container">
-        <h1>File Upload</h1>
+        <h1>Image Upload</h1>
         <%= typeof msg != 'undefined' ? msg: '' %>
         <form action="/upload" method="POST" enctype="multipart/form-data">
             <div class="file-field input-field">
                 <div class="btn grey">
                     <span>Browse</span>
-                    <input type="file" name="myImage">
+                    <input type="file" name="my-signature-image">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" placeholder="Upload one or more files">
