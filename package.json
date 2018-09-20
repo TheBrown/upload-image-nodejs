@@ -1,0 +1,16 @@
+{
+  "name": "upload-image-mysql",
+  "version": "1.0.0",
+  "description": "example for image uploading in Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saleumsack KEOBOUALAY",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "multer": "^1.3.1"
+  }
+}
