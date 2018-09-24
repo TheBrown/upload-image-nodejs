@@ -90,49 +90,6 @@ app.get("/test", (req, res) => {
   });
 });
 
-app.post("/uploaddb", (req, res) => {
-  // if (res.status(200)) res.send('you have list of product');
-  pool.getConnection((err, connection) => {
-    if (err) throw err;
-
-    const product = {
-      item_image: req.body.image,
-      id_product: req.body.id
-    };
-
-    const queyString = "INSERT INTO product_image SET ?";
-
-    connection.query(queyString, [product], (errors, result) => {
-      connection.release();
-      // if (errors) res.send(errors);
-
-      if (res.status(200)) res.send(result);
-      console.log(JSON.stringify(result));
-    });
-  });
-});
-
-app.post("/upload", (req, res) => {
-  upload(req, res, err => {
-    if (err) {
-      res.render("index", {
-        msg: err
-      });
-    } else {
-      if (req.file == undefined) {
-        res.render("index", {
-          msg: "No File Selected!"
-        });
-      } else {
-        res.render("index", {
-          msg: "File Uploaded!",
-          file: `uploads/${year}/${month}/${req.file.filename}`
-        });
-      }
-    }
-  });
-});
-
 app.post("/uploadImage", (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
@@ -156,7 +113,7 @@ app.post("/uploadImage", (req, res) => {
         } else {
           connection.query(queyString, [product], (errors, result) => {
             connection.release();
-            
+
             if(res.status(200)) console.log(JSON.stringify(result));
           });
 
